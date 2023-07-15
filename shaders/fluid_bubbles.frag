@@ -18,14 +18,14 @@ out vec4 fragColor;
 
 
 void main() {
-  vec2 uv = (FlutterFragCoord()- uSize.xy *.5) / uSize.y;
+  vec2 uv = (FlutterFragCoord() - 4.0 * uSize.xy) / uSize.y * -2.0;
 
   float sum = 0.;
 
   for(float i=0.; i<COUNT; i++){
     float dir = mod(i, 3.)*2.-1.;
     float a = iTime + i + rand1(i) * 3.1415;
-    float l = length(vec2(uv.x+sin(a)*.25*dir, uv.y+cos(a*.5)*.25)*dir);
+    float l = length(vec2(uv.x+sin(a)*.25*dir, uv.y+cos(a*0.5)*.25)*dir);
 
     sum+=countTimes/l;
   }

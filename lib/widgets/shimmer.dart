@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+
+import 'package:flutter/material.dart';
 import 'package:flutter_shaders/flutter_shaders.dart';
 
-class ShinyButton extends StatefulWidget {
-  const ShinyButton({Key? key}) : super(key: key);
+class Shimmer extends StatefulWidget {
+  const Shimmer({Key? key}) : super(key: key);
 
   @override
-  State<ShinyButton> createState() => _ShinyButtonState();
+  State<Shimmer> createState() => _ShimmerState();
 }
 
-class _ShinyButtonState extends State<ShinyButton>
-    with SingleTickerProviderStateMixin {
+class _ShimmerState extends State<Shimmer> with SingleTickerProviderStateMixin {
   late final AnimationController animationController;
   @override
   void initState() {
@@ -48,17 +49,7 @@ class _ShinyButtonState extends State<ShinyButton>
                       Paint()..shader = shader,
                     );
                   },
-                  // child: const Icon(
-                  //   Icons.add_business_sharp,
-                  //   size: 200,
-                  // ),
-                  child: FilledButton(
-                    onPressed: () {},
-                    child: const Text(
-                      "Click here",
-                      style: TextStyle(fontSize: 40),
-                    ),
-                  ),
+                  child: ShimmerList(),
                 );
               },
               assetKey: 'shaders/light_sweep.frag',
@@ -67,6 +58,37 @@ class _ShinyButtonState extends State<ShinyButton>
     );
     return Scaffold(
       body: child,
+    );
+  }
+}
+
+class ShimmerList extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    int offset = 0;
+    int time = 800; // Default time for the shimmer effect.
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Shimmer List'),
+      ),
+      body: ListView.builder(
+        itemCount: 10,
+        itemBuilder: (BuildContext context, int index) {
+          offset += 5;
+          time = 800 + offset;
+
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 7.5),
+            child: Container(
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5.0),
+                color: Colors.black54,
+              ),
+              height: 100.0,
+            ),
+          );
+        },
+      ),
     );
   }
 }

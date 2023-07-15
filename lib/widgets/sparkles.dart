@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_shaders/flutter_shaders.dart';
 
-class ShinyButton extends StatefulWidget {
-  const ShinyButton({Key? key}) : super(key: key);
+class Sparkles extends StatefulWidget {
+  const Sparkles({Key? key}) : super(key: key);
 
   @override
-  State<ShinyButton> createState() => _ShinyButtonState();
+  State<Sparkles> createState() => _SparklesState();
 }
 
-class _ShinyButtonState extends State<ShinyButton>
+class _SparklesState extends State<Sparkles>
     with SingleTickerProviderStateMixin {
   late final AnimationController animationController;
   @override
@@ -28,6 +28,7 @@ class _ShinyButtonState extends State<ShinyButton>
   double value = 0;
   @override
   Widget build(BuildContext context) {
+    final screenSize = MediaQuery.sizeOf(context);
     final child = Center(
       child: AnimatedBuilder(
           animation: animationController,
@@ -41,7 +42,6 @@ class _ShinyButtonState extends State<ShinyButton>
                     shader.setFloat(1, size.height);
                     shader.setFloat(2, value);
 
-                    shader.setImageSampler(0, image);
                     value += 0.03;
                     canvas.drawRect(
                       Rect.fromLTWH(0, 0, size.width, size.height),
@@ -52,21 +52,38 @@ class _ShinyButtonState extends State<ShinyButton>
                   //   Icons.add_business_sharp,
                   //   size: 200,
                   // ),
-                  child: FilledButton(
-                    onPressed: () {},
-                    child: const Text(
-                      "Click here",
-                      style: TextStyle(fontSize: 40),
-                    ),
+                  child: Container(
+                    width: screenSize.width,
+                    height: screenSize.height,
+                    // child: FilledButton(
+                    //   onPressed: () {},
+                    //   child: const Text(
+                    //     "Click here",
+                    //     style: TextStyle(fontSize: 40),
+                    //   ),
+                    // ),
                   ),
                 );
               },
-              assetKey: 'shaders/light_sweep.frag',
+              assetKey: 'shaders/sparkles.frag',
             );
           }),
     );
     return Scaffold(
-      body: child,
+      body: Stack(
+        children: [
+          child,
+          Center(
+            child: FilledButton(
+              onPressed: () {},
+              child: const Text(
+                "Click here",
+                style: TextStyle(fontSize: 40),
+              ),
+            ),
+          )
+        ],
+      ),
     );
   }
 }

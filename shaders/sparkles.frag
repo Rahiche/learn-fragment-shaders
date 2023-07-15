@@ -16,7 +16,7 @@ float Hash31(in vec3 p) {
 }
 
 void main() {
-    vec2 uv = (FlutterFragCoord() - 0.5 * uSize.xy) / uSize.y * 4.0;
+    vec2 uv = (FlutterFragCoord() - 0.5 * uSize.xy) / uSize.y * 9.0;
 
     float time = iTime * 2.0;
     vec3 color = vec3(0.0);

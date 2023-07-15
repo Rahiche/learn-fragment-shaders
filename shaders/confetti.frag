@@ -13,12 +13,12 @@ uniform float iTime;
 // http://creativecommons.org/licenses/by-nc-sa/3.0/au
 
 #define N_POPS 5
-#define TIME_BETWEEN_POPS 1.2
+#define TIME_BETWEEN_POPS 0.8
 #define TIME_BETWEEN_POPS_RANDOM 0.6
 #define N_CONFETTI 16
 #define PI 3.1415926535
 #define SQUARE_HARDNESS 10.0
-#define GLOW_INTENSITY 0.8
+#define GLOW_INTENSITY 0.2
 #define HUE_VARIANCE 0.2
 
 #define V_INITIAL 600.0
@@ -154,8 +154,7 @@ float isInRotatedQuad(vec4 offsets, vec2 center, vec2 p)
 }
 
 void main(  ) {
-    vec2 scaledFragCoord = FlutterFragCoord() / iResolution.xy * vec2(20.0, 20.0);
-//    vec2 scaledFragCoord = FlutterFragCoord() / vec2(10, 10) * vec2(800.0, 450.0);
+    vec2 scaledFragCoord = FlutterFragCoord() / iResolution.xy * vec2(800.0, 450.0);
     const float size = 6.0;
     const float max_square_dist = size * size * 128.0;
     float max_dist = sqrt(max_square_dist);

@@ -66,6 +66,10 @@ flutter:
     - shaders/blur_single_pass.frag
     - shaders/confetti.frag
     - shaders/light_sweep.frag
+    - shaders/sparkles.frag
+    - shaders/mang.frag
+    - shaders/noise_blur.glsl
+    - shaders/frosted.frag
 
   # To add assets to your application, add an assets section, like this:
   # assets:
